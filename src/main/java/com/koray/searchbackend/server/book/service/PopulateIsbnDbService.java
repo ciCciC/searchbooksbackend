@@ -20,7 +20,7 @@ import java.util.stream.Collectors;
 
 @Slf4j
 @Service
-public class PopulateDbService {
+public class PopulateIsbnDbService {
 
     @Qualifier("elasticsearchTemplate")
     @Autowired
@@ -47,7 +47,7 @@ public class PopulateDbService {
         log.info("Bulk - insert - completed for IsbnBooks");
     }
 
-    private IndexQuery toIquery(IsbnBook book, Gson gson){
+    private IndexQuery toIquery(IsbnBook book, Gson gson) {
         StringBuilder indexName = new StringBuilder(IsbnBook.class.getSimpleName().toLowerCase());
         IndexQuery indexQuery = new IndexQuery();
         indexQuery.setId(book.getId());
@@ -57,8 +57,8 @@ public class PopulateDbService {
         return indexQuery;
     }
 
-    private IsbnBook buildIsbnBookFromStringArr(String [] b){
-        if(b[3].length() < 5) {
+    private IsbnBook buildIsbnBookFromStringArr(String[] b) {
+        if (b[3].length() < 5) {
             return IsbnBook.builder()
                     .id(b[0])
                     .title(clean(b[1]))
@@ -72,7 +72,7 @@ public class PopulateDbService {
                     .textReviewsCount(Integer.parseInt(b[9]))
                     .tags(Arrays.asList("thriller", "action", "horror"))
                     .build();
-        }else{
+        } else {
             return IsbnBook.builder()
                     .id(b[0])
                     .title(clean(b[1]))
@@ -89,14 +89,14 @@ public class PopulateDbService {
         }
     }
 
-    private String clean(String valueToClean){
+    private String clean(String valueToClean) {
         StringBuilder replacedChars = replaceChars(valueToClean);
         return replacedChars.toString().contains("(") ?
                 replacedChars.substring(0, replacedChars.indexOf("(")) :
                 valueToClean;
     }
 
-    private StringBuilder replaceChars(String value){
+    private StringBuilder replaceChars(String value) {
         return new StringBuilder(value.replaceAll("[0-9#-]", ""));
     }
 }

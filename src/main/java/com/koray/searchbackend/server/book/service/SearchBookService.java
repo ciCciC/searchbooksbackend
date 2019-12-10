@@ -58,7 +58,7 @@ public class SearchBookService {
     private <T> SearchQuery getByTitleQuery(String title, int pageIndex, Class<T> bookClass) {
         QueryBuilder query = QueryBuilders.boolQuery()
                 .should(QueryBuilders
-                        .queryStringQuery(title+"*")
+                        .queryStringQuery(title + "*")
                         .field("title")
                         .boost(50));
 
@@ -74,13 +74,13 @@ public class SearchBookService {
     private <T> SearchQuery getByAuthorQuery(String author, int pageIndex, Class<T> bookClass) {
         QueryBuilder query = QueryBuilders.boolQuery()
                 .should(QueryBuilders
-                        .queryStringQuery(author+"*")
+                        .queryStringQuery(author + "*")
                         .field("author.name")
                         .boost(50));
         return nativeSearchQueryBuilder(query, pageIndex, bookClass);
     }
 
-    private <T> NativeSearchQuery nativeSearchQueryBuilder(QueryBuilder query, int pageIndex, Class<T> bookClass){
+    private <T> NativeSearchQuery nativeSearchQueryBuilder(QueryBuilder query, int pageIndex, Class<T> bookClass) {
         return new NativeSearchQueryBuilder()
                 .withQuery(query)
                 .withIndices(bookClass.getSimpleName().toLowerCase())
@@ -89,7 +89,7 @@ public class SearchBookService {
                 .build();
     }
 
-    private <T> Optional<PageSummary<T>> pageSummaryBuilder(Stream<T> bookStream, long totalSizeIndex){
+    private <T> Optional<PageSummary<T>> pageSummaryBuilder(Stream<T> bookStream, long totalSizeIndex) {
         return Optional.ofNullable(PageSummary.<T>builder()
                 .dataDtos(bookStream)
                 .totalSizeIndex(totalSizeIndex)

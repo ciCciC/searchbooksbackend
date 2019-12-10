@@ -51,22 +51,22 @@ public class ScraperService {
         HttpsURLConnection.setDefaultSSLSocketFactory(context.getSocketFactory());
     }
 
-    public void connect(StringBuilder isbn){
-        try{
+    public void connect(StringBuilder isbn) {
+        try {
             System.out.println("Calling: " + this.isbnQuery.toString() + isbn.toString());
             doc = Jsoup.connect(this.isbnQuery.toString() + isbn.toString())
                     .timeout(30000)
                     .userAgent("Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2228.0 Safari/537.36")
                     .referrer("http://www.google.com")
                     .get();
-        } catch (IOException e){
+        } catch (IOException e) {
             System.out.println(e.getMessage());
             System.out.println("No connection.");
             e.printStackTrace();
         }
     }
 
-    private Element getBody(){
+    private Element getBody() {
         return doc.body();
     }
 

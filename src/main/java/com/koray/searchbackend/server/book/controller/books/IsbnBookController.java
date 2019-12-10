@@ -7,25 +7,19 @@ import com.koray.searchbackend.server.book.controller.books.mapper.IsbnBookMappe
 import com.koray.searchbackend.server.book.controller.books.mapper.PageMapper;
 import com.koray.searchbackend.server.book.domain.IsbnBook;
 import com.koray.searchbackend.server.book.service.IsbnBookService;
-import com.koray.searchbackend.server.book.service.PopulateDbService;
 import org.springframework.web.bind.annotation.*;
 
-import java.io.IOException;
-import java.net.URISyntaxException;
 import java.util.Optional;
 
 @CrossOrigin(origins = "${frontendhost}")
-@RequestMapping("isbnbooks")
 @RestController
-public class IsbnBookController {
+@RequestMapping("isbnbooks")
+public class IsbnBookController extends BooksController<IsbnBookDto> {
 
     private IsbnBookService isbnBookService;
-    private PopulateDbService populateDbService;
 
-    public IsbnBookController(IsbnBookService isbnBookService,
-                           PopulateDbService populateDbService) {
+    public IsbnBookController(IsbnBookService isbnBookService) {
         this.isbnBookService = isbnBookService;
-        this.populateDbService = populateDbService;
     }
 
     @GetMapping
@@ -42,14 +36,14 @@ public class IsbnBookController {
 //    }
 
     @GetMapping("/search/title")
-    public Optional<PageDto<IsbnBookDto>> searchBooksByTitle(@RequestParam String value, @RequestParam int page){
-        Optional<PageSummary<IsbnBook>> pageSummary = isbnBookService.searchIsbnBookByTitle(value, page);
+    public Optional<PageDto<IsbnBookDto>> searchBooksByTitle(@RequestParam String q, @RequestParam int page){
+        Optional<PageSummary<IsbnBook>> pageSummary = isbnBookService.searchIsbnBookByTitle(q, page);
         return pageSummary.map(PageMapper.INSTANCE::isbnToDTO);
     }
 
     @GetMapping("/search/pages")
-    public Optional<PageDto<IsbnBookDto>> searchBooksByAmountPages(@RequestParam String value, @RequestParam int page){
-        Optional<PageSummary<IsbnBook>> pageSummary = isbnBookService.searchIsbnBookByTitle(value, page);
+    public Optional<PageDto<IsbnBookDto>> searchBooksByAmountPages(@RequestParam String q, @RequestParam int page){
+        Optional<PageSummary<IsbnBook>> pageSummary = isbnBookService.searchIsbnBookByTitle(q, page);
         return pageSummary.map(PageMapper.INSTANCE::isbnToDTO);
     }
 
@@ -59,9 +53,9 @@ public class IsbnBookController {
         return optionalBook.map(IsbnBookMapper.INSTANCE::toDTO);
     }
 
-    @GetMapping("/populate")
-    public String populate() throws IOException, URISyntaxException {
-        populateDbService.populateISBNbooks();
-        return "success";
-    }
+//    @GetMapping("/populate")
+//    public String populate() throws IOException, URISyntaxException {
+//        populateDbService.populateISBNbooks();
+//        return "success";
+//    }
 }
