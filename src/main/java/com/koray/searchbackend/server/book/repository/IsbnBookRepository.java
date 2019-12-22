@@ -1,6 +1,6 @@
 package com.koray.searchbackend.server.book.repository;
 
-import com.koray.searchbackend.server.book.domain.IsbnBook;
+import com.koray.searchbackend.server.book.data.IsbnBook;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.elasticsearch.annotations.Query;

@@ -1,17 +1,10 @@
 package com.koray.searchbackend.server.book.service;
 
-import com.koray.searchbackend.server.book.controller.books.dto.IsbnBookDto;
-import com.koray.searchbackend.server.book.controller.books.fixture.IsbnBookFixture;
-import com.koray.searchbackend.server.book.controller.books.mapper.IsbnBookMapper;
-import com.koray.searchbackend.server.book.domain.Author;
-import com.koray.searchbackend.server.book.domain.IsbnBook;
-import org.apache.lucene.analysis.CharacterUtils;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
-import java.nio.charset.CharsetEncoder;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -30,7 +23,7 @@ class PopulateIsbnDbServiceTest {
 
         Files.lines(booksCsvPath, StandardCharsets.ISO_8859_1)
                 .parallel()
-                .limit(10000)
+                .limit(100)
                 .map(value -> separateData(value))
                 .filter(value -> (value.length - 1)  > 8 && !value[9].isEmpty())
                 .map(value -> cleanComma(value))

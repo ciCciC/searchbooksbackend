@@ -2,9 +2,9 @@ package com.koray.searchbackend.server.book.controller.books.mapper;
 
 import com.koray.searchbackend.server.book.controller.books.dto.AmazonBookDto;
 import com.koray.searchbackend.server.book.controller.books.dto.IsbnBookDto;
-import com.koray.searchbackend.server.book.domain.AmazonBook;
-import com.koray.searchbackend.server.book.domain.Author;
-import com.koray.searchbackend.server.book.domain.IsbnBook;
+import com.koray.searchbackend.server.book.data.AmazonBook;
+import com.koray.searchbackend.server.book.data.Author;
+import com.koray.searchbackend.server.book.data.IsbnBook;
 import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;
 

@@ -1,7 +1,7 @@
 package com.koray.searchbackend.server.book.service;
 
 import com.koray.searchbackend.server.book.controller.books.dto.PageSummary;
-import com.koray.searchbackend.server.book.domain.IsbnBook;
+import com.koray.searchbackend.server.book.data.IsbnBook;
 import com.koray.searchbackend.server.book.repository.IsbnBookRepository;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.data.domain.Page;

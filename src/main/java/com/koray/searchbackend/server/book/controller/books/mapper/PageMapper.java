@@ -4,8 +4,8 @@ import com.koray.searchbackend.server.book.controller.books.dto.AmazonBookDto;
 import com.koray.searchbackend.server.book.controller.books.dto.IsbnBookDto;
 import com.koray.searchbackend.server.book.controller.books.dto.PageDto;
 import com.koray.searchbackend.server.book.controller.books.dto.PageSummary;
-import com.koray.searchbackend.server.book.domain.AmazonBook;
-import com.koray.searchbackend.server.book.domain.IsbnBook;
+import com.koray.searchbackend.server.book.data.AmazonBook;
+import com.koray.searchbackend.server.book.data.IsbnBook;
 import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;
 
@@ -21,11 +21,11 @@ public interface PageMapper {
     PageDto<IsbnBookDto> isbnToDTO(PageSummary<IsbnBook> pageSummary);
     PageDto<AmazonBookDto> amazonToDTO(PageSummary<AmazonBook> pageSummary);
 
-    default List<AmazonBookDto> toAmazonBookDTOs(Stream<AmazonBook> amazonBookStream) {
-        return amazonBookStream.map(IsbnBookMapper.INSTANCE::toDTO).collect(Collectors.toList());
-    }
-
     default List<IsbnBookDto> toIsbnBookDTOs(Stream<IsbnBook> isbnBookStream) {
         return isbnBookStream.map(IsbnBookMapper.INSTANCE::toDTO).collect(Collectors.toList());
+    }
+
+    default List<AmazonBookDto> toAmazonBookDTOs(Stream<AmazonBook> amazonBookStream) {
+        return amazonBookStream.map(IsbnBookMapper.INSTANCE::toDTO).collect(Collectors.toList());
     }
 }

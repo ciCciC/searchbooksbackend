@@ -1,4 +1,4 @@
-package com.koray.searchbackend.server.book.domain;
+package com.koray.searchbackend.server.book.data;
 
 import lombok.*;
 import org.springframework.data.annotation.Id;

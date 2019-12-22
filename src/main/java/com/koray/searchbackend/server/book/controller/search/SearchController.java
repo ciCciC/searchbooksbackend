@@ -3,12 +3,10 @@ package com.koray.searchbackend.server.book.controller.search;
 import com.koray.searchbackend.server.book.controller.books.dto.PageDto;
 import com.koray.searchbackend.server.book.controller.books.dto.PageSummary;
 import com.koray.searchbackend.server.book.controller.books.mapper.PageMapper;
-import com.koray.searchbackend.server.book.domain.IsbnBook;
+import com.koray.searchbackend.server.book.data.IsbnBook;
 import com.koray.searchbackend.server.book.service.SearchBookService;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Optional;
 
 @CrossOrigin(origins = "${frontendhost}")

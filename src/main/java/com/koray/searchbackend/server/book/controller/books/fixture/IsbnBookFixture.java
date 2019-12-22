@@ -1,8 +1,7 @@
 package com.koray.searchbackend.server.book.controller.books.fixture;
 
-import com.koray.searchbackend.server.book.domain.Author;
-import com.koray.searchbackend.server.book.domain.Book;
-import com.koray.searchbackend.server.book.domain.IsbnBook;
+import com.koray.searchbackend.server.book.data.Author;
+import com.koray.searchbackend.server.book.data.IsbnBook;
 
 import java.util.Arrays;
 import java.util.Locale;

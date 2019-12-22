@@ -1,8 +1,8 @@
 package com.koray.searchbackend.server.book.service;
 
 import com.google.gson.Gson;
-import com.koray.searchbackend.server.book.domain.Author;
-import com.koray.searchbackend.server.book.domain.IsbnBook;
+import com.koray.searchbackend.server.book.data.Author;
+import com.koray.searchbackend.server.book.data.IsbnBook;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
